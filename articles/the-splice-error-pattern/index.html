@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>The splice error pattern — oleggromov.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/default.min.css">
+  </head>
+  <body>
+    <div class="site">
+      <aside class="site__about">
+        <div class="sidebar">
+          <div class="sidebar__about">
+            <div class="about">
+              <div class="about__photo"><img src="/static/photo.jpg" alt="Oleg Gromov" class="about__img"></div>
+              <div class="about__text"><p>My name is <strong>Oleg Gromov</strong>. I&#39;m frontend developer and team lead at Yandex, Moscow. I write on my experience in programming and learning.</p>
+</div>
+            </div>
+          </div>
+          <nav class="sidebar__links">
+            <nav class="links">
+              <div class="links__group"><span class="links__item"><a href="/articles">Articles</a></span>
+              </div>
+              <div class="links__group links__group_external"><a href="//github.com/oleggromov" target="_blank" class="links__item">github</a><a href="//facebook.com/oleg.v.gromov" target="_blank" class="links__item">facebook</a><a href="//stackoverflow.com/users/1557048/oleggromov" target="_blank" class="links__item">stackoverflow</a><a href="//twitter.com/oleggromov" target="_blank" class="links__item">twitter</a>
+              </div>
+            </nav>
+          </nav>
+        </div>
+      </aside>
+      <div class="site__content">
+        <div class="article">
+          <h1>The splice error pattern</h1>
+          <div class="article__date">February 9, 2016</div>
+<p>Imagine you’re writing an algorithm which performs looping over an array with any type of pointer (<code>for</code> or <code>while</code> loop, <code>forEach</code>, <code>map</code> etc). Each iteration the pointer moves in any direction, but you never force it to come back in the most of cases. Why should you? This mode of manipulating data is so much usual that your probably have never ever thought of its liability to hard-to-find annoying errors which will lead you toward wearing debugging!</p>
+<p>The erroneous pattern is very simple and obvious. Say you need to map some action to all array elements and write.</p>
+<pre><code class="lang-javascript">var arr = [1, 2, 3];
+arr.forEach(act);
+
+function act(item) {
+    console.log(item);
+}
+</code></pre>
+<p>This will simply iterate through an array of numbers and call act function by turns with each item as an argument. Very obvious, isn’t it? The thing works fine until the function doesn’t change anything. But the problem appears once you decide to change something in the array (e.g. remove unused empty elements) retaining this algorithm. You modify the callback in the following way.</p>
+<pre><code class="lang-javascript">function act(item, index) {
+    if (item) {
+        console.log(item);
+    } else {
+        arr.splice(index, 1);
+    }
+}
+</code></pre>
+<p>The new version of act will print an element if it exists but also take care of absent or empty elements by removing them from an array. The splice method is a good choice to do such type of manipulation. Even if you stare at this code for a minute you maybe won’t exhibit it’s deceptive nature. Intuitively the way of moving through array items one by one seems possibly the most safe way of doing something. But wait. What if an array can be changed during the manipulation?</p>
+<p>My guess is you’ve already understood what happens in that case. The <code>forEach</code> method implicitly (or for loop explicitly in turn) moves the iterator over an elements of array, counting from the first one to the last one. Until we have an array of truthy values nothing can happen with the defined above function. But a single element will be skipped for each falsy one in an array! The act method called on the <code>[1, undefined, 3, 4, undefined, 5]</code> array will only log <code>1</code> and <code>4</code> because it latently moves the pointer as often as encounters an empty element by deleting it, and thus changes the array length and omits an item.</p>
+<h2 id="the-only-possible-fix">The only possible fix</h2>
+<p><strong>Warning!</strong> All this stuff written above and below can originate only from the misunderstanding of <code>forEach</code>. The correct and, I claim, the <em>only fix that is worth knowing of</em> is to not modify any array from within a <code>forEach</code> loop. There&#39;re modifying methods of arrays that should be used in similar cases: <code>filter</code>, <code>map</code>, <code>reduce</code>.</p>
+<p>The code above should be rewritten in the following manner:</p>
+<pre><code class="lang-javascript">var arr = [1, 2, undefined, 3];
+arr = arr.filter(item =&gt; {
+    console.log(item);
+    return Boolean(item);
+});
+
+console.log(arr);
+&gt; [1, 2, 3];
+</code></pre>
+<p>As the <code>filter</code> method decides wheter to keep or to delete each item on the callback return value, we simply return <code>false</code> for falsy array items.</p>
+<h2 id="quick-fix">Quick fix</h2>
+<p>I consider there’re a few options of how to deal with those cases.</p>
+<p>This first one is to modify for loop to empower it to check if the array length was changed and then shift the pointer. I don’t like this way because it’s too awkward and shitty — conceive you’re decided to manipulate an array in another method, but the looping part for some reason should know about external manipulation possibility.</p>
+<p>The second approach is to lock the array like in concurrent computing until the loop is over. It is rather complicated for such pristine algorithm, although far more conscientious.</p>
+<p>The third one I prefer is not to modify array’s length at all, but replace an item with undefined value instead of it. It is very simple and seems more efficient if we suppose an array could be large.</p>
+<h3 id="fix-in-a-functional-programming-manner">Fix in a functional programming manner</h3>
+<p>Small discussion in twitter with <a href="//twitter.com/lukaszwojciak"  target="_blank">@lukaszwojciak</a> and <a href="//twitter.com/DanShappir"  target="_blank">@DanShappir</a> compelled me to think of an array cloning as a real option. It&#39;s said to be fast enough because arary clone makes only shallow copy leaving objects untouched and <em>pretty simple</em>, which is the most important reason one should be guided by while attempting to write good well understandable code.</p>
+<p>So the best solution looks simple:</p>
+<pre><code class="lang-javascript">var arr = [1, 2, 3];
+arr.concat().forEach(act);
+
+function act(item, index) {
+    if (item) {
+        console.log(item);
+    } else {
+        arr.splice(index, 1);
+    }
+}
+</code></pre>
+<h2 id="what-do-you-think">What do you think</h2>
+<p>Have something to say on this erroneous pattern? Please use the comment form below to share your thoughts!</p>
+
+          <div class="article__comments">
+            <div id="disqus_thread"></div>
+            <script>(function() {var d = document, s = d.createElement('script');s.src = '//oleggromov.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script>
+          </div>
+        </div>
+      </div>
+      <div class="site__footer">
+        <div class="footer"><p>All content is written by Oleg Gromov. Published by <a href="//github.com/oleggromov/oxypogon"  target="_blank">Oxypogon.js, the static site generator</a>.</p>
+</div>
+      </div>
+    </div>
+    <script>(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter6486163 = new Ya.Metrika({ id:6486163, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js"></script>
+    <script>
+      if (hljs) {
+      	hljs.initHighlightingOnLoad()
+      }
+    </script>
+  </body>
+</html>

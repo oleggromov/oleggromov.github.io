@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Bookmarks #2 — oleggromov.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/default.min.css">
+  </head>
+  <body>
+    <div class="site">
+      <aside class="site__about">
+        <div class="sidebar">
+          <div class="sidebar__about">
+            <div class="about">
+              <div class="about__photo"><img src="/static/photo.jpg" alt="Oleg Gromov" class="about__img"></div>
+              <div class="about__text"><p>My name is <strong>Oleg Gromov</strong>. I&#39;m frontend developer and team lead at Yandex, Moscow. I write on my experience in programming and learning.</p>
+</div>
+            </div>
+          </div>
+          <nav class="sidebar__links">
+            <nav class="links">
+              <div class="links__group"><span class="links__item"><a href="/articles">Articles</a></span>
+              </div>
+              <div class="links__group links__group_external"><a href="//github.com/oleggromov" target="_blank" class="links__item">github</a><a href="//facebook.com/oleg.v.gromov" target="_blank" class="links__item">facebook</a><a href="//stackoverflow.com/users/1557048/oleggromov" target="_blank" class="links__item">stackoverflow</a><a href="//twitter.com/oleggromov" target="_blank" class="links__item">twitter</a>
+              </div>
+            </nav>
+          </nav>
+        </div>
+      </aside>
+      <div class="site__content">
+        <div class="article">
+          <h1>Bookmarks #2</h1>
+          <div class="article__date">August 7, 2016</div>
+<p>This week&#39;s bookmarks list can be way more interesting for programmers than the previous one because there&#39;s one very interesting historical narration and some links about front-end development. There&#39;re also some links for those who like science and is interested in world&#39;s experience of avoiding traffic jams.</p>
+<h2 id="the-history-of-electronic-mail-by-tom-van-vleck-">The History of Electronic Mail, by <em>Tom Van Vleck</em></h2>
+<p>This is a GREAT article describing the arising of the first mailing system on the CTSS (Compatible Time Sharing System) at MIT in the mid 1960. The system was originally based on the CTSS&#39;s New File System capabilities and in fact was a bunch of programs allowed you to send a file contents (message) to a user on a project if you knew their names. System was wrote by <em>Tom Van Vleck</em> and his colleague <em>Noel Morris</em>.</p>
+<p>Tom narrates about the first spam emergence: one of his colleagues who had access for broadcasting in messages wrote a mail starting with a phrase “There is no way to peace. Peace is the way” and tried to defend it arguing with Tom and saying “but this is important!”.</p>
+<p>The idea emerged many times, Tom claims, and the message interchanging within a system was implemented almost in any OS of those days. Eventually, after the replacement of CTSS with Multics, Tom ported the original mail program to the latter OS - himself as earlier, because there was no one instead of him who could do it in the right way.</p>
+<p>In 1971 <em>Ray Tomlinson</em> of BBN modified <code>sndmsg</code> program to send messages from one ARPANet host to another and, besides it, proposed to use <code>@</code> sign “to separate user name from host name in mail addresses”.</p>
+<p>All of those and many other people, discussions and systems were involved in a long process of creating the thing we are all familiar with nowadays, internet mailing system. Tom appeals to use just “mail” instead of term “e-mail” because one day the use of electrons to deliver mail can become quaint in favor of quarks or photons.</p>
+<p><a href="http://multicians.org/thvv/mail-history.html"  target="_blank">Read the full story</a>.</p>
+<h3 id="further-reading-on-the-topic-">Further reading on the topic:</h3>
+<ul>
+<li><a href="https://www.washingtonpost.com/national/on-innovations/a-history-of-e-mail-collaboration-innovation-and-the-birth-of-a-system/2012/03/19/gIQAOeFEPS_story.html"  target="_blank">A History of E-mail: Collaboration, innovation and the birth of a system</a></li>
+<li><a href="http://www.templetons.com/brad/spam/spam25.html"  target="_blank">Reflections on the 25th anniversary of spam</a></li>
+<li><a href="http://opinionator.blogs.nytimes.com/2011/06/19/did-my-brother-invent-e-mail-with-tom-van-vleck-part-one/?_r=1"  target="_blank">Did my brother invent e-mail with Tom Van Vleck?</a> (First part?)</li>
+</ul>
+<h3 id="more-articles-on-the-topic-by-tom-van-vleck-">More articles on the topic by Tom Van Vleck:</h3>
+<ul>
+<li><a href="http://multicians.org/thvv/emailbad.html"  target="_blank">The Risks of Electronic Communication</a></li>
+<li><a href="http://multicians.org/thvv/spamfilt.html"  target="_blank">How I Filter Spam</a></li>
+</ul>
+<h2 id="front-end-reads">Front-end reads</h2>
+<ul>
+<li><p><a href="http://blog.belong.co/why-we-moved-from-angular-to-react"  target="_blank">Why we moved from Angular to React</a>. An ordinary comparison of two popular frameworks and, what is way more interesting, two patterns that are implemented in Angular in React respectively. The first one, very familiar to me, is MVC with two-way data binding, and the second one, Flux, has only one data direction from the Dispatcher to the Store and finally to the View. This is an interesting overview of the topic for those who are back from the modern framework hype (as I personally).</p>
+</li>
+<li><p><a href="https://blog.risingstack.com/writing-a-javascript-framework-execution-timing-beyond-settimeout/"  target="_blank">About event loop and execution of tasks of different kinds and sizes in the predefined order</a>. It&#39;s interesting to read about different task queues in browsers, including microtask query, and the methods of interaction with them. Author is making a framework from scratch and promises to write more articles on the same topic. It&#39;s a good read if you&#39;re interested in browser internals.</p>
+</li>
+</ul>
+<h2 id="non-programming-stuff">Non-programming stuff</h2>
+<ul>
+<li><p><a href="http://gizmodo.com/china-actually-built-that-crazy-traffic-straddling-bus-1784724612"  target="_blank">Guys from China made a prototype of the bus that goes above the main traffic and can therefore pass by traffic jams</a>. I&#39;m pretty sure that the right way of removing traffic jams is to make owning a car in a megapolis rather expensive and the public transportation enough effective, so people will decide to choose the latter. This bus is a great idea for increasing effectiveness of public transport, but I&#39;m very curious about the method of turning the corners.</p>
+</li>
+<li><p><a href="http://phys.org/news/2016-08-scientists-previously-unknown.html"  target="_blank">London physicists coupled electron and photon</a>. An interesting writing that describes the coupled photon and electron. Besides the curiosity to characteristics of matter and some practical applications (electron and photon being bounded together share some of each other&#39;s properties making possible things like circuit conductor imperfection), this will allow scientists to study quantum effects and interactions at room temperature.</p>
+</li>
+<li><p><a href="http://www.sciencealert.com/scientists-have-just-seen-birds-sleep-while-flying-for-the-first-time-ever"  target="_blank">Birds that almost don&#39;t sleep during longtime flights</a>. I haven&#39;t know, but scientists have already known about birds&#39; unique ability to sleep with only one hemisphere at a moment leaving another one working to be aware of predators and other threats. The article describes the first time when scientists could prove the hypothesis that birds can also sleep while flying. The most interesting thing about birds is not even their charming ability to proceed with moving in the right direction and sleep at the same moment, but to sleep only for about 40 minutes a day while the normal time exceeds this amount to about 10 times.</p>
+</li>
+</ul>
+
+          <div class="article__comments">
+            <div id="disqus_thread"></div>
+            <script>(function() {var d = document, s = d.createElement('script');s.src = '//oleggromov.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script>
+          </div>
+        </div>
+      </div>
+      <div class="site__footer">
+        <div class="footer"><p>All content is written by Oleg Gromov. Published by <a href="//github.com/oleggromov/oxypogon"  target="_blank">Oxypogon.js, the static site generator</a>.</p>
+</div>
+      </div>
+    </div>
+    <script>(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter6486163 = new Ya.Metrika({ id:6486163, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js"></script>
+    <script>
+      if (hljs) {
+      	hljs.initHighlightingOnLoad()
+      }
+    </script>
+  </body>
+</html>

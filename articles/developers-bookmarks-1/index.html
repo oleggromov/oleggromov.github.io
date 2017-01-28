@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Developer&#39;s bookmarks #1: progressive web apps, automated testing pyramid, thoughts about good code and some CSS fun — oleggromov.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/default.min.css">
+  </head>
+  <body>
+    <div class="site">
+      <aside class="site__about">
+        <div class="sidebar">
+          <div class="sidebar__about">
+            <div class="about">
+              <div class="about__photo"><img src="/static/photo.jpg" alt="Oleg Gromov" class="about__img"></div>
+              <div class="about__text"><p>My name is <strong>Oleg Gromov</strong>. I&#39;m frontend developer and team lead at Yandex, Moscow. I write on my experience in programming and learning.</p>
+</div>
+            </div>
+          </div>
+          <nav class="sidebar__links">
+            <nav class="links">
+              <div class="links__group"><span class="links__item"><a href="/articles">Articles</a></span>
+              </div>
+              <div class="links__group links__group_external"><a href="//github.com/oleggromov" target="_blank" class="links__item">github</a><a href="//facebook.com/oleg.v.gromov" target="_blank" class="links__item">facebook</a><a href="//stackoverflow.com/users/1557048/oleggromov" target="_blank" class="links__item">stackoverflow</a><a href="//twitter.com/oleggromov" target="_blank" class="links__item">twitter</a>
+              </div>
+            </nav>
+          </nav>
+        </div>
+      </aside>
+      <div class="site__content">
+        <div class="article">
+          <h1>Developer&#39;s bookmarks #1: progressive web apps, automated testing pyramid, thoughts about good code and some CSS fun</h1>
+          <div class="article__date">August 18, 2016</div>
+<p>This time I decided to separate all related to software development stuff from personal and other things that are interesting but are off the topic.</p>
+<p>Here is a huge list of articles which I, by means of some unknown magic (even for me!), could read in the course of the past week. The most interesting and fun story which I&#39;d like to start with is <a href="http://www.montulli.org/theoriginofthe%3Cblink%3Etag"  target="_blank">the history of the <code>blink</code> tag</a>. This is an amazing read of the kind I like most of all: an amusing story on something very related to me and my experience (of course, technologies and guys who invented them). Must read for everyone!</p>
+<h2 id="react-s-diff-algorithm">React&#39;s diff algorithm</h2>
+<p>Christopher Chedeau tells how the diffing algorithm is implemented in React. As in general algorithms finding difference between trees (in form of needed operations to transform one to another) are as complex as <code>O(n³)</code>, React implements the simpler one which compare trees level by level and re-rendering the whole sub-tree if the level was modified.</p>
+<p>React also implements its own event delegation model and gives the user an opportunity to customize sub-tree rendering by implementing a <code>shouldComponentUpdate</code> hook that is provided with the next state objects and should decide whether to re-render component or not.</p>
+<h2 id="should-you-ever-use-a-js-framework">Should you ever use a JS framework</h2>
+<p>Sean reasons about companies of different sizes each having a special place for software in its business and thus makes interesting decisions about should the company use any framework or not.</p>
+<h2 id="three-of-more-use-a-for-">Three of more? Use a for!</h2>
+<p>A rule of thumb about refactoring and code duplication. Once the code is duplicated twice you may decide not to get rid of this duplication by means of refactoring because you can spend time implementing something more useful. But when it comes to three-time duplication these parts of code become way more error-prone and you should refactor the code.</p>
+<h2 id="a-beginners-guide-to-progressive-web-apps">A beginners guide to progressive web apps</h2>
+<p>I found a good introduction into the world of progressive web apps which is just arising now. A progressive web app is a website which meets a standard description in the form of <code>manifest.json</code> file (it allows an app to specify icons, background, device orientation and other stuff that makes it look and feel more like a native one), uses <em>Service Workers</em> and <em>Cache API</em> to cache needed “application shell” (a bunch of static assets that are to be downloaded to shape the application) and can be pinned to a home screen just like a native app so you can use it with ease. Those apps can also use <em>IndexedDB</em> to store offline data, <em>PushAPI</em> to make push notifications and maybe some other cool technologies.</p>
+<p>Unfortunately, all these features are available basically on Android devices, in Chrome, Opera etc. So, as the author claims, Safari doesn&#39;t support the most part of these features, thus I cannot make my training app on this stack and use it on my iphone yet. Afterward, I found an article which said that iOS had support for PWAs (mainly by means of &quot;add to home screen&quot; menu itema and a special meta-tag in the head of the page) but a 9-year old one. There was no service workers, no PWA manifest support and iOS still lacks support for all this stuff.</p>
+<h2 id="how-to-write-good-code">How to write good code</h2>
+<p>Pretty clear article about the basics of professional programming - i.e. writing code. This is not the competitional programming when you have to understand problem in detail and then write the solution in code most quickly. Professional programming, when your code solves business problems and should fit business restrictions and requirements is different. Author says and I agree that code should be easy to change (as the requirements tend to change vastly and surprisingly fast), it should be easy to read and understand (as you colleagues need to change adjacent parts of the system), it should work (yep!) and, finally, it&#39;s better for you and others if the code you write is elegant enough. An important notice is that you probably never will achieve the mastery and start writing ideal code one day. But you can try unless you don&#39;t have another deadline in front of you.</p>
+<h2 id="automated-testing-best-practices">Automated testing best practices</h2>
+<p>I found a great article by Xolvio which covered a few significant gaps in my understanding of automated testing.</p>
+<h3 id="the-testing-pyramid">The testing pyramid</h3>
+<p>The testing pyramid is finally unveiled by the article itself and the reference to the <a href="https://www.mountaingoatsoftware.com/blog/the-forgotten-layer-of-the-test-automation-pyramid"  target="_blank">article by Mike Cohn, The Forgotten Layer of Test Automation Pyramid</a>.</p>
+<p><em>Unit tests</em> form the foundation of the pyramid because they can be easily written (in case your code is well decoupled) and give instant feedback on introduced bugs (“line 50 or somewhere around there has just broke up”).</p>
+<p>The next <em>Service layer</em> introduces all domain-specific testing. This includes all objects and actions in the system that form it&#39;s basic functionality. This layer testing procedures better to be detached from UI. For example, there can be an <code>AdData</code> class instance that communicates with an <code>AdManager</code> instance to accomplish <code>Show advertisement</code> process (service in other words) in an advertisement showing program. Typically this level of testing should cover a few cooperating modules. The interesting part is, those tests are often become forgotten, yet they should glue the massive and precise unit tests layer together with the fragmentary level of UI tests.</p>
+<p>The last <strong>UI tests level</strong> is not described in detail, but is said to be the most fragile and hard to develop and maintain one, thus it should be the smallest one on the top of the tesing pyramid.</p>
+<p>The first two “lessons” of th article form another gap in my understanding that is, unfortunately, is not filled up yet, even with the text. They try to explain the importance of thinking in the <em>domain</em> of your business and writing tests in accordance with it, refer to Domain Driven Design (I&#39;ve tried to find some useful examples of designing systems by those guides, but haven&#39;t succeed yet) and call to first think about tests in the world of not existing program (with its implementation details like CSS class names) where only the meaning itself exists.</p>
+<p>The article also mentions Gherkin (Cucumber scenario declaration language). I don&#39;t understand yet what this tool is actually designed for, but the idea of separating test specification of the test and the code seems to be interesting. The question is, how hard would be the maintenance of separated code with a specification icing on top of it.</p>
+<p>Author also strongly (too strongly, I think!) recommends to try out <a href="http://dm.gl/"  target="_blank">Wallaby.js</a>, a test runner tool which executes test over the code right in time of your editing. The license for the tool is sold for $100+ so maybe authors are just connected in some partnership... Eventually, it doesn&#39;t matter because the article itself is a good starting point to the understanding of testing automation.</p>
+<h2 id="full-width-child-element-in-a-limited-with-parent">Full-width child element in a limited with parent</h2>
+<p>I found an interesting compilation of methods that make possible a child element to have width of the browser window while placed in a fixed-width parent. Basically this is achieved either with negative margins (if you lucky enough to know the parent&#39;s width) or with viewport-based width unit <code>vw</code> (abbreviation for <em>viewport width</em>).</p>
+<p>This feature can be used for a blog like mine, for example. Once I decide to publish something interesting with images (not only this booooooring text), I&#39;ll definitely try this tecnique.</p>
+<h2 id="chosing-between-var-const-and-let-in-a-es2015-project">Chosing between <code>var</code>, <code>const</code> and <code>let</code> in a ES2015 project</h2>
+<p>Remy Sharp wrote an article about chosing the right variable/constant declaration method. After reading, I agreed and decided to follow the simple rule in my ES6 projects: make all varaibles block-scoped by default by using <code>let</code> for declaration and try to make a <code>const</code> anything that is not designed to change (wheter it is a pointer to an object-like structure or just a primitive value).</p>
+<h2 id="pipes-and-filters-data-processing-pattern">Pipes and filters data processing pattern</h2>
+<p>Imagine you have an appication that processes data from a few different sources. One, for instance, is user input and another one is database input that has come from the server. Initally those two data sources can have more differences than similarities, but eventually, I claim, they both will duplicate each other&#39;s functionality more or less, but in amount that is enough, for sure, to become a source of copy-paste errors.</p>
+<p>Thinking about a problem of this class in my project I found an interesting and simple pattern named <strong>Pipes and Filters</strong>. The pattern in essence implements a very straigthforward idea of separating processing routines into different modules (namely <em>filters</em>) and combining them into chains (namely <em>pipes</em>). There can be two pipes (one for each source of input data) with a few filters in our simple example mentioned above.</p>
+<p>This pattern is recommended to be used in distributed systems but it&#39;s pretty clear that the benefits (separation of concerns between different filters processing the same input, better code reuse posibilities and an opportunity to make modules loosely coupled) encourage us to use it even in a single-threaded environments like browsers that execute JavaScript programs. But I don&#39;t know how yet.</p>
+<h2 id="-git-bisect-as-a-way-to-make-binary-search-by-repo-for-a-mistake"><code>git bisect</code> as a way to make binary search by repo for a mistake</h2>
+<p>I have never used it before, but <code>git bisect</code> seems to be a simple yet powerful tool for searching your long commit history for a particular one commit which produced a bug for the first time or introduced new feature. Originally the reference to <code>git bisect</code> was found on <a href="https://www.facebook.com/ivanbessarabov"  target="_blank">@bessarabov&#39;s Facebook</a>.</p>
+<h2 id="feel-free-to-comment-and-follow">Feel free to comment and follow</h2>
+<p>Hey, if you&#39;ve read this article till the most end, maybe your&#39;re interested in saying what&#39;s on your mind? Don&#39;t hesitate and write down a comment!</p>
+<p>If you like my articles, <strong><a href="https://twitter.com/oleggromov"  target="_blank">follow me on twitter</a></strong>.</p>
+<h2 id="sources">Sources</h2>
+<p>Any blog is made to be read. This one is not an exception. As long as I have so many external links right in the text (which seems to be a good idea for the first time) any of which will never bring you back to my site, I don&#39;t understand what a miracle can make you stay with me. So far, all the references are listed below:</p>
+<ul>
+<li><a href="http://calendar.perfplanet.com/2013/diff/"  target="_blank">React&#39;s diff algorithm</a></li>
+<li><a href="http://www.planningforaliens.com/blog/2016/06/09/when-to-use-a-js-framework/"  target="_blank">When to use a JavaScript framework</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Rule_of_three_%28computer_programming%29"  target="_blank">Three or more? Use a for!</a></li>
+<li><a href="https://www.smashingmagazine.com/2016/08/a-beginners-guide-to-progressive-web-apps/"  target="_blank">Beginners guide to progressive wep apps</a><ul>
+<li><a href="https://medium.com/@firt/dont-use-ios-web-app-meta-tag-irresponsibly-in-your-progressive-web-apps-85d70f4438cb"  target="_blank">Don&#39;t use iOS web app meta tag</a></li>
+</ul>
+</li>
+<li><a href="http://www.daedtech.com/write-good-code/"  target="_blank">How to write good code</a></li>
+<li>Xolvio&#39;s <a href="https://github.com/xolvio/automated-testing-best-practices"  target="_blank">automated testing best practices</a><ul>
+<li><a href="https://github.com/xolvio/automated-testing-best-practices/blob/master/content/TESTING-SUCCESS-FACTORS.md"  target="_blank">Testing Success Factors</a></li>
+<li><a href="https://github.com/cucumber/cucumber/wiki/Gherkin"  target="_blank">Gherkin, Cucumber scenario declaration language</a></li>
+</ul>
+</li>
+<li>Chris Coyer&#39;s <a href="https://css-tricks.com/full-width-containers-limited-width-parents/"  target="_blank">how to make full-width child element.</a></li>
+<li>Remy Sharp&#39;s <a href="https://remysharp.com/2016/08/09/var-const-let"  target="_blank">chosing the right variable/constant declaration method</a></li>
+<li>Pipes and filters:<ul>
+<li><a href="https://msdn.microsoft.com/en-us/library/dn568100.aspx"  target="_blank">Microsoft&#39;s “Pipes and Filters” article on MSDN</a></li>
+<li><a href="http://www.dossier-andreas.net/software_architecture/pipe_and_filter.html"  target="_blank">Pipe-and-Filter, by <em>Dossier Andreas</em></a></li>
+</ul>
+</li>
+<li><a href="http://stackoverflow.com/a/4714297"  target="_blank">A good explanation of git bisect</a> with an example of git bisect usage can also be found on Stack Overflow.</li>
+</ul>
+
+          <div class="article__comments">
+            <div id="disqus_thread"></div>
+            <script>(function() {var d = document, s = d.createElement('script');s.src = '//oleggromov.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script>
+          </div>
+        </div>
+      </div>
+      <div class="site__footer">
+        <div class="footer"><p>All content is written by Oleg Gromov. Published by <a href="//github.com/oleggromov/oxypogon"  target="_blank">Oxypogon.js, the static site generator</a>.</p>
+</div>
+      </div>
+    </div>
+    <script>(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter6486163 = new Ya.Metrika({ id:6486163, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js"></script>
+    <script>
+      if (hljs) {
+      	hljs.initHighlightingOnLoad()
+      }
+    </script>
+  </body>
+</html>
