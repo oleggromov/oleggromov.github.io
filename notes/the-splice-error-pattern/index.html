@@ -14,13 +14,13 @@
           <div class="sidebar__about">
             <div class="about">
               <div class="about__photo"><img src="/static/photo.jpg" alt="Oleg Gromov" class="about__img"></div>
-              <div class="about__text"><p>My name is <strong>Oleg Gromov</strong>. I&#39;m frontend developer and team lead at Yandex, Moscow. I write on my experience in programming and learning.</p>
+              <div class="about__text"><p>My name is <strong>Oleg Gromov</strong>. I&#39;m a software developer who likes exploring the world and discovering his own passions. You&#39;re welcome to read my notes here and comment on them!</p>
 </div>
             </div>
           </div>
           <nav class="sidebar__links">
             <nav class="links">
-              <div class="links__group"><span class="links__item"><a href="/articles">Articles</a></span>
+              <div class="links__group"><span class="links__item"><a href="/notes">Notes</a></span>
               </div>
               <div class="links__group links__group_external"><a href="//github.com/oleggromov" target="_blank" class="links__item">github</a><a href="//facebook.com/oleg.v.gromov" target="_blank" class="links__item">facebook</a><a href="//stackoverflow.com/users/1557048/oleggromov" target="_blank" class="links__item">stackoverflow</a><a href="//twitter.com/oleggromov" target="_blank" class="links__item">twitter</a>
               </div>
@@ -31,7 +31,7 @@
       <div class="site__content">
         <div class="article">
           <h1>The splice error pattern</h1>
-          <div class="article__date">February 9, 2016</div>
+          <div class="article__date">Published on February 9, 2016</div>
 <p>Imagine you’re writing an algorithm which performs looping over an array with any type of pointer (<code>for</code> or <code>while</code> loop, <code>forEach</code>, <code>map</code> etc). Each iteration the pointer moves in any direction, but you never force it to come back in the most of cases. Why should you? This mode of manipulating data is so much usual that your probably have never ever thought of its liability to hard-to-find annoying errors which will lead you toward wearing debugging!</p>
 <p>The erroneous pattern is very simple and obvious. Say you need to map some action to all array elements and write.</p>
 <pre><code class="lang-javascript">var arr = [1, 2, 3];
