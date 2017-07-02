@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Declarativity Comes at a Price — oleggromov.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="/static/styles.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:300,300i,700,700i&amp;amp;subset=cyrillic,cyrillic-ext,latin-ext"/>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/default.min.css"/>
+  </head>
+  <body>
+    <div class="site">
+      <aside class="site__about">
+        <div class="sidebar">
+          <div class="sidebar__about">
+            <div class="about">
+              <div class="about__photo"><img src="/static/photo.jpg" alt="Oleg Gromov" class="about__img"></div>
+              <div class="about__text"><p>My name is <strong>Oleg Gromov</strong>. I&#39;m a software developer who likes exploring the world and discovering his own passions. You&#39;re welcome to read my notes here and comment on them!</p>
+</div>
+            </div>
+          </div>
+          <nav class="sidebar__links">
+            <nav class="links">
+              <div class="links__group"><span class="links__item"><a href="/notes/">Notes</a></span><span class="links__item"><a href="/places/">Places</a></span>
+              </div>
+              <div class="links__group links__group_external">
+                <div class="links__reach"><p>Feel free to reach me on:</p>
+</div><a href="https://github.com/oleggromov" target="_blank" class="links__item">github</a><a href="https://facebook.com/oleg.v.gromov" target="_blank" class="links__item">facebook</a><a href="https://stackoverflow.com/users/1557048/oleggromov" target="_blank" class="links__item">stackoverflow</a><a href="https://twitter.com/oleggromov" target="_blank" class="links__item">twitter</a><a href="https://medium.com/@oleggromov" target="_blank" class="links__item">medium</a>
+              </div>
+            </nav>
+          </nav>
+        </div>
+      </aside>
+      <div class="site__content">
+        <div class="article">
+          <h1>Declarativity Comes at a Price</h1>
+          <div class="article__date">Published in <a href="/notes/">Notes</a> on July 2, 2017
+          </div>
+<p>There is a widely held notion, and I agree, that declarative code is better than imperative. It is less error-prone, usually much more eloquent and neat and thus much more maintainable. It is a good principle to follow on a day-to-day basis when you use existing declarative libraries like the JavaScript standard library (<code>Array</code>/<code>Object</code> methods etc.), underscore/lodash or React. However, when it comes to making a decision to either write some declarative code (and therefore much more generalized) or just leave an imperative ad hoc solution, I suggest thinking at least twice.</p>
+<p>Every algorithm has specific complexity; not only does it have computational complexity (declared by means of time/memory it takes to run on different input sizes), but also a <em>complexity of writing and understanding the code</em> that implements it. The latter primarily falls to programmers who work with the code, and in the world of budgets and deadlines is also a valid point of concern.</p>
+<p>What I state in this article’s title, <em>declarativity comes at a price</em>, can be split in a few theses.</p>
+<h2 id="implementation-cost-might-be-higher">Implementation Cost Might Be Higher</h2>
+<p>Whenever you decide to write something declaratively and have already implemented required primitives, like <code>map</code> or <code>filter</code> for arrays, you might be fine. Someone has already spent time writing and debugging it, and the only thing is left to do is understand how these primitives work and build your own algorithm of these small pieces. What is even better, once you understand how these building blocks work you acquire a rare skill of writing concise code with ease, which must be appreciated by virtually any good programmer in the world.</p>
+<p>On the other hand, when a problem you’re solving or a solution you’re picking is not so common and you cannot find needed “blocks”, you might be facing a tough decision of implementing them on your own. Sometimes generalization and abstraction require much more effort you will or can make.</p>
+<h2 id="comprehension-and-debugging-price-might-be-higher">Comprehension and Debugging Price Might Be Higher</h2>
+<p>Declarative code looks clearer at first glance but this impression is likely to change when it comes to deep comprehension and debugging. Simple things like <code>map</code> or <code>filter</code> are relatively well known and understood, more complex things like React’s component lifecycle are much more sophisticated, and self-implemented and likely not documented and/or tested primitives can be your worst nightmare. You might end up unraveling abstractions your coworker came up with a long time ago or even rewriting them in order to make it work as you expect.</p>
+<p>Generalized solutions of abstract problems, which declarative code comprises in essence, are hard. When you generalize an idea and explain it to your friend you might simplify it as well for sake of understanding; when you generalize algorithm, on the other hand, you likely create more and more edge cases because otherwise the code won’t work. It leads to more complications compared to an original smaller issue, more tests to be written and more time to be spent comprehending.</p>
+<p>And furthermore, we love eloquence and neatness in our code. A generalized solution might be not so good in the first place and you’ll spend hours to make it look better, whereas the original problem’s solution could have taken only a few minutes.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Don’t get me wrong, I agitate neither against declarative code nor for it. Just be aware of the costs. When you’re lucky to have necessary tools, go ahead and use them. When you encounter a stinky imperative code in your shiny declarative React app, you most likely have a reason to be concerned. Just try to think twice and make a deliberate decision. We won’t get closer to good and working code just echoing dogmas that are being said on every corner. Considering implementation and comprehension and debugging costs, on the other hand, might help to come up with the right decision, whether it is leaving the code as is or paying the price for making it declarative and more generalized.</p>
+
+          <div class="article__date"> Written on June 20, 2017</div>
+          <div class="article__comments">
+            <div id="disqus_thread"></div>
+            <script>(function() {var d = document, s = d.createElement('script');s.src = '//oleggromov.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script>
+          </div>
+        </div>
+      </div>
+      <div class="site__footer">
+        <div class="footer"><p>All content is written by Oleg Gromov in 2009—2017.</p>
+<p>Published by <a href="//github.com/oleggromov/oxypogon"  target="_blank">Oxypogon.js, the static site generator</a>.</p>
+</div>
+      </div>
+    </div>
+    <script>(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter6486163 = new Ya.Metrika({ id:6486163, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js"></script>
+    <script>
+      if (hljs) {
+      	hljs.initHighlightingOnLoad()
+      }
+    </script>
+  </body>
+</html>
