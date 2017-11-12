@@ -4,7 +4,7 @@
   const body = document.querySelector('body')
   const raf = window.requestAnimationFrame
 
-  const ws = new WebSocket(`ws://${host}:3002`)
+  const ws = new WebSocket(`ws://ml.oleggromov.com:3002`)
   // REGISTER_SLAVE
   ws.onopen = function (e) {
     ws.send(JSON.stringify({

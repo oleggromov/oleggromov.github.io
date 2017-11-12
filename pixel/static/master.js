@@ -47,7 +47,7 @@
   let delay
 
   qs('#init').addEventListener('click', function () {
-    const ws = new WebSocket(`ws://${host}:3002`)
+    const ws = new WebSocket(`ws://ml.oleggromov.com:3002`)
 
     const playOnLoad = function () {
       console.warn(`👍🏿 Loaded ${currentTrack.file}`)
