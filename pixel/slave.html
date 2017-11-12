@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Colorize your music - Pixel.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="icon" href="/static/favicon.ico" type="image/x-icon"/>
+</head>
+<body>
+  <div id="waiting">
+    Waiting for the master app
+  </div>
+
+  <div id="ready" style="display: none">
+    <button id="fullscreen" style="display: none">Go fullscreen!</button>
+  </div>
+
+  <div id="id"></div>
+
+  <div class="logo">
+    <svg xmlns="http://www.w3.org/2000/svg" width="152" height="37" viewBox="0 0 152 37"><defs><style>.logo-cls-1, .logo-cls-8 { fill: #005ab2; } .logo-cls-2 { fill: #ff0025; } .logo-cls-3, .logo-cls-7 { fill: #ffe200; } .logo-cls-4 { fill: #f4f4f4; } .logo-cls-5 { fill: #181818; } .logo-cls-6 { fill: #fff; } .logo-cls-6, .logo-cls-7, .logo-cls-8 { fill-rule: evenodd; }</style></defs><path class="logo-cls-1" d="M0 27h9v9H0z"/><path class="logo-cls-2" d="M9 27h9v9H9z"/><path class="logo-cls-3" d="M18 27h9v9h-9z"/><path d="M27 27h9v9h-9z"/><path d="M0 18h9v9H0z"/><path class="logo-cls-1" d="M9 18h9v9H9z"/><path class="logo-cls-4" d="M18 18h9v9h-9z"/><path class="logo-cls-3" d="M27 18h9v9h-9z"/><path class="logo-cls-3" d="M0 9h9v9H0z"/><path class="logo-cls-4" d="M9 9h9v9H9z"/><path class="logo-cls-2" d="M18 9h9v9h-9z"/><path class="logo-cls-1" d="M27 9h9v9h-9z"/><path class="logo-cls-2" d="M0 0h9v9H0z"/><path class="logo-cls-5" d="M9 0h9v9H9z"/><path class="logo-cls-1" d="M18 0h9v9h-9z"/><path class="logo-cls-4" d="M27 0h9v9h-9z"/><path class="logo-cls-6" d="M60.832 10.857H49.9v25.106h5.843V29.04h5.086a14.29 14.29 0 0 0 5.824-1.093 8.488 8.488 0 0 0 3.805-3.156 8.683 8.683 0 0 0 1.34-4.823 8.3 8.3 0 0 0-5.14-8 14.1 14.1 0 0 0-5.825-1.112zm-.325 13.45h-4.76v-8.715h4.76a6.162 6.162 0 0 1 4 1.13 3.967 3.967 0 0 1 1.37 3.246 3.925 3.925 0 0 1-1.37 3.21 6.162 6.162 0 0 1-4 1.13zM76.45 35.963h5.626v-19.3H76.45v19.3zm31.2 0l-7.5-9.863 7.213-9.433h-5.988L97.152 22.3l-4.112-5.63h-6.31l7.213 9.575-7.466 9.72h6.132l4.4-5.918 4.255 5.918h6.384zm21.315-9.576a10.38 10.38 0 0 0-1.317-5.29 8.936 8.936 0 0 0-3.624-3.5 11.56 11.56 0 0 0-10.442.054 9.457 9.457 0 0 0-3.715 3.552 9.817 9.817 0 0 0-1.353 5.11 9.69 9.69 0 0 0 1.37 5.13 9.36 9.36 0 0 0 3.896 3.533 12.724 12.724 0 0 0 5.807 1.273q5.266 0 8.007-3.12L124.6 29.9a6.52 6.52 0 0 1-2.182 1.417 7.487 7.487 0 0 1-2.688.448 6.232 6.232 0 0 1-3.678-1.04 4.537 4.537 0 0 1-1.876-2.833h14.68q.108-1.4.108-1.506zM118.9 20.613a4.763 4.763 0 0 1 3.174 1.094 4.622 4.622 0 0 1 1.587 2.923h-9.56a4.57 4.57 0 0 1 1.587-2.94 4.86 4.86 0 0 1 3.21-1.077zm14.716 15.35h5.626V9.352h-5.626v26.613z"/><path class="logo-cls-7" d="M76.313 7.78h5.844v5.782h-5.844v-5.78z"/><path class="logo-cls-8" d="M143.656 30.156h5.844v5.813h-5.844v-5.814z"/></svg>
+  </div>
+
+  <div id="circle">
+    <svg xmlns="http://www.w3.org/2000/svg" width="642" height="642" viewBox="0 0 642 642"><defs><style>.cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8 { fill: none; stroke-width: 2px; } .cls-1 { stroke: #474747; } .cls-2 { stroke: #404040; } .cls-3 { stroke: #393939; } .cls-4 { stroke: #323232; } .cls-5 { stroke: #2b2b2b; } .cls-6 { stroke: #242424; } .cls-7 { stroke: #1c1c1c; } .cls-8 { stroke: #151515; }</style></defs><circle id="circle_1" class="cls-1" cx="321" cy="321" r="40"/><circle id="circle_2" class="cls-2" cx="321" cy="321" r="80"/><circle id="circle_3" class="cls-3" cx="321" cy="321" r="120"/><circle id="circle_4" class="cls-4" cx="321" cy="321" r="160"/><circle id="circle_5" class="cls-5" cx="321" cy="321" r="200"/><circle id="circle_6" class="cls-6" cx="321" cy="321" r="240"/><circle id="circle_7" class="cls-7" cx="321" cy="321" r="280"/><circle id="circle_8" class="cls-8" cx="321" cy="321" r="320"/></svg>
+  </div>
+
+  <script src="/static/slave.js"></script>
+</body>
+</html>

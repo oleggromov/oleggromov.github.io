@@ -1,31 +1,151 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Colorize your music - Pixel.</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-  <link rel="stylesheet" href="/static/style.css">
-  <link rel="icon" href="/static/favicon.ico" type="image/x-icon"/>
-</head>
-<body>
-  <div id="waiting">
-    Waiting for the master app
-  </div>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Oleg Gromov</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="/static/styles.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:300,300i,700,700i&amp;amp;subset=cyrillic,cyrillic-ext,latin-ext"/>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/default.min.css"/>
+  </head>
+  <body>
+    <div class="site">
+      <aside class="site__about">
+        <div class="sidebar">
+          <div class="sidebar__about">
+            <div class="about">
+              <div class="about__photo"><img src="/static/photo.jpg" alt="Oleg Gromov" class="about__img"></div>
+              <div class="about__text"><p>My name is <strong>Oleg Gromov</strong>. I&#39;m a software developer who likes exploring the world and discovering his own passions. You&#39;re welcome to read my notes here and comment on them!</p>
+</div>
+            </div>
+          </div>
+          <nav class="sidebar__links">
+            <nav class="links">
+              <div class="links__group"><span class="links__item"><a href="/notes/">Notes</a></span><span class="links__item"><a href="/places/">Places</a></span>
+              </div>
+              <div class="links__group links__group_external">
+                <div class="links__reach"><p>Feel free to reach me on:</p>
+</div><a href="https://github.com/oleggromov" target="_blank" class="links__item">github</a><a href="https://facebook.com/oleg.v.gromov" target="_blank" class="links__item">facebook</a><a href="https://stackoverflow.com/users/1557048/oleggromov" target="_blank" class="links__item">stackoverflow</a><a href="https://twitter.com/oleggromov" target="_blank" class="links__item">twitter</a><a href="https://medium.com/@oleggromov" target="_blank" class="links__item">medium</a>
+              </div>
+            </nav>
+          </nav>
+        </div>
+      </aside>
+      <div class="site__content">
+        <article class="article">
+          <h1><a href="/notes/2017-09-04-driving-in-usa">Вождение и аренда машины в США</a></h1>
+          <div class="article__date article__date_preview">Published in <a href="/notes/">Notes</a> on September 5, 2017
+          </div><p>Первое, что нужно знать даже туристу, едущему в Калифорнию, это то, что без тачки тут делать нечего. Даже в LA, даже в Сан-Франциско (потому что наверняка вы не будете жить в самом Сан-Франциско). Общественный транспорт в этих двух городах считается неплохим в сравнении с местами, где его нет вообще — но в сравнении с привычной мне Москвой или Европой его просто нет.</p>
+<p>Автобусы медленные, останавливаются каждые 500 метров. Метро хорошее, хоть и непривычное. Из-за меньших пассажиропотоков ждать поезда можно 10 минут — обычное дело. Поначалу, так как людей в подземке намного меньше, было очень странно находиться на пустой платформе почти в одиночестве, особенно ночью. Стоит проезд $1.75 за поездку в LA, есть бесплатные пересадки — обязательно покупайте транспортные карты даже для езды на автобусе.</p>
 
-  <div id="ready" style="display: none">
-    <button id="fullscreen" style="display: none">Go fullscreen!</button>
-  </div>
+          <p class="more"><a href="/notes/2017-09-04-driving-in-usa" class="more__link">Как арендовать машину, сколько стоит бензин, отличия в правилах</a></p>
+        </article>
+        <article class="article">
+          <h1><a href="/notes/2017-07-declarativity-comes-at-a-price">Declarativity Comes at a Price</a></h1>
+          <div class="article__date article__date_preview">Published in <a href="/notes/">Notes</a> on July 2, 2017
+          </div><p>There is a widely held notion, and I agree, that declarative code is better than imperative. It is less error-prone, usually much more eloquent and neat and thus much more maintainable. It is a good principle to follow on a day-to-day basis when you use existing declarative libraries like the JavaScript standard library (<code>Array</code>/<code>Object</code> methods etc.), underscore/lodash or React. However, when it comes to making a decision to either write some declarative code (and therefore much more generalized) or just leave an imperative ad hoc solution, I suggest thinking at least twice.</p>
+<p>Every algorithm has specific complexity; not only does it have computational complexity (declared by means of time/memory it takes to run on different input sizes), but also a <em>complexity of writing and understanding the code</em> that implements it. The latter primarily falls to programmers who work with the code, and in the world of budgets and deadlines is also a valid point of concern.</p>
 
-  <div id="id"></div>
+          <p class="more"><a href="/notes/2017-07-declarativity-comes-at-a-price" class="more__link">What I state in this article’s title can be split in a few theses.</a></p>
+        </article>
+        <article class="article">
+          <h1><a href="/notes/2017-06-oregon-and-northern-california">Орегон и Северная Калифорния</a></h1>
+          <div class="article__date article__date_preview">Published in <a href="/notes/">Notes</a> on June 29, 2017
+          </div><p>В конце каждого 3-месячного модуля студенты Columbia West College отправляются на недельные каникулы. В прошлый раз я ездил исследовать Bay Area, в этот раз — решил поехать дальше, в Портленд, штат Орегон. Расстояние по Interstate-5 от Лос-Анджелеса до Портленда — около 960 миль, то есть полторы тысячи километров. За день проехать можно (и поначалу казалось, что придётся по пути назад), но сложно, поэтому первая остановка была в Bay Area, в городке под названием Hayward — чтобы заодно повидать напоследок друзей, живущих неподалёку, в Бёркли.</p>
+<p>I-5, в отличие от легендарного и живописного Highway 1, идущего по побережью Тихого Океана, дорога прямая и скучная. Как только выезжаешь из Лос-Анджелеса и проезжаешь первые горы, начинаются калифорнийские поля (похоже на Ростовскую область или Краснодарский край, только есть горы на горизонте), виноградники и плодовые сады (ни на что не похоже). Температура в тени на этот раз была сумасшедшая, около 40 градусов выше нуля. На улице баня! Легендарная калифорнийская жара наконец-то показала себя во всей красе — чем дальше вглубь континента от океана, тем жарче. И эта температура относительно нормальная для лета в Калифорнии.</p>
 
-  <div class="logo">
-    <svg xmlns="http://www.w3.org/2000/svg" width="152" height="37" viewBox="0 0 152 37"><defs><style>.logo-cls-1, .logo-cls-8 { fill: #005ab2; } .logo-cls-2 { fill: #ff0025; } .logo-cls-3, .logo-cls-7 { fill: #ffe200; } .logo-cls-4 { fill: #f4f4f4; } .logo-cls-5 { fill: #181818; } .logo-cls-6 { fill: #fff; } .logo-cls-6, .logo-cls-7, .logo-cls-8 { fill-rule: evenodd; }</style></defs><path class="logo-cls-1" d="M0 27h9v9H0z"/><path class="logo-cls-2" d="M9 27h9v9H9z"/><path class="logo-cls-3" d="M18 27h9v9h-9z"/><path d="M27 27h9v9h-9z"/><path d="M0 18h9v9H0z"/><path class="logo-cls-1" d="M9 18h9v9H9z"/><path class="logo-cls-4" d="M18 18h9v9h-9z"/><path class="logo-cls-3" d="M27 18h9v9h-9z"/><path class="logo-cls-3" d="M0 9h9v9H0z"/><path class="logo-cls-4" d="M9 9h9v9H9z"/><path class="logo-cls-2" d="M18 9h9v9h-9z"/><path class="logo-cls-1" d="M27 9h9v9h-9z"/><path class="logo-cls-2" d="M0 0h9v9H0z"/><path class="logo-cls-5" d="M9 0h9v9H9z"/><path class="logo-cls-1" d="M18 0h9v9h-9z"/><path class="logo-cls-4" d="M27 0h9v9h-9z"/><path class="logo-cls-6" d="M60.832 10.857H49.9v25.106h5.843V29.04h5.086a14.29 14.29 0 0 0 5.824-1.093 8.488 8.488 0 0 0 3.805-3.156 8.683 8.683 0 0 0 1.34-4.823 8.3 8.3 0 0 0-5.14-8 14.1 14.1 0 0 0-5.825-1.112zm-.325 13.45h-4.76v-8.715h4.76a6.162 6.162 0 0 1 4 1.13 3.967 3.967 0 0 1 1.37 3.246 3.925 3.925 0 0 1-1.37 3.21 6.162 6.162 0 0 1-4 1.13zM76.45 35.963h5.626v-19.3H76.45v19.3zm31.2 0l-7.5-9.863 7.213-9.433h-5.988L97.152 22.3l-4.112-5.63h-6.31l7.213 9.575-7.466 9.72h6.132l4.4-5.918 4.255 5.918h6.384zm21.315-9.576a10.38 10.38 0 0 0-1.317-5.29 8.936 8.936 0 0 0-3.624-3.5 11.56 11.56 0 0 0-10.442.054 9.457 9.457 0 0 0-3.715 3.552 9.817 9.817 0 0 0-1.353 5.11 9.69 9.69 0 0 0 1.37 5.13 9.36 9.36 0 0 0 3.896 3.533 12.724 12.724 0 0 0 5.807 1.273q5.266 0 8.007-3.12L124.6 29.9a6.52 6.52 0 0 1-2.182 1.417 7.487 7.487 0 0 1-2.688.448 6.232 6.232 0 0 1-3.678-1.04 4.537 4.537 0 0 1-1.876-2.833h14.68q.108-1.4.108-1.506zM118.9 20.613a4.763 4.763 0 0 1 3.174 1.094 4.622 4.622 0 0 1 1.587 2.923h-9.56a4.57 4.57 0 0 1 1.587-2.94 4.86 4.86 0 0 1 3.21-1.077zm14.716 15.35h5.626V9.352h-5.626v26.613z"/><path class="logo-cls-7" d="M76.313 7.78h5.844v5.782h-5.844v-5.78z"/><path class="logo-cls-8" d="M143.656 30.156h5.844v5.813h-5.844v-5.814z"/></svg>
-  </div>
+          <p class="more"><a href="/notes/2017-06-oregon-and-northern-california" class="more__link">Продолжение про природу, климат, людей и другие детали поездки</a></p>
+        </article>
+        <article class="article">
+          <h1><a href="/notes/2017-06-what-are-you-career-goals">What Are Your Career Goals?</a></h1>
+          <div class="article__date article__date_preview">Published in <a href="/notes/">Notes</a> on June 22, 2017
+          </div><p><em>I’ve recently joined a developer community <a href="https://dev.to"  target="_blank">dev.to</a>. It is a really nice place where people spur discussions and ask questions that are not only related to technologies and software development but are incredibly important as well, for us as human beings constantly looking for meaning in life. One of these questions is moving: “What are your career goals?”</em></p>
+<p>I’ve spent a decent hour writing and polishing the answer and it turns out to be so important and concise that I’d like to publish it on my own website. Publish in order not to lose it, share it with people who’re interested in me and emphasize this incredibly important reasoning I’ve happily derived from my latest experience. I hope my thoughts might be even helpful for those who constantly question their careers and even themselves.</p>
 
-  <div id="circle">
-    <svg xmlns="http://www.w3.org/2000/svg" width="642" height="642" viewBox="0 0 642 642"><defs><style>.cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8 { fill: none; stroke-width: 2px; } .cls-1 { stroke: #474747; } .cls-2 { stroke: #404040; } .cls-3 { stroke: #393939; } .cls-4 { stroke: #323232; } .cls-5 { stroke: #2b2b2b; } .cls-6 { stroke: #242424; } .cls-7 { stroke: #1c1c1c; } .cls-8 { stroke: #151515; }</style></defs><circle id="circle_1" class="cls-1" cx="321" cy="321" r="40"/><circle id="circle_2" class="cls-2" cx="321" cy="321" r="80"/><circle id="circle_3" class="cls-3" cx="321" cy="321" r="120"/><circle id="circle_4" class="cls-4" cx="321" cy="321" r="160"/><circle id="circle_5" class="cls-5" cx="321" cy="321" r="200"/><circle id="circle_6" class="cls-6" cx="321" cy="321" r="240"/><circle id="circle_7" class="cls-7" cx="321" cy="321" r="280"/><circle id="circle_8" class="cls-8" cx="321" cy="321" r="320"/></svg>
-  </div>
+          <p class="more"><a href="/notes/2017-06-what-are-you-career-goals" class="more__link">Read the answer to the one of the most important questions in a developer’s life</a></p>
+        </article>
+        <article class="article">
+          <h1><a href="/notes/2017-03-why-capitalists-lie">Why Capitalists Lie</a></h1>
+          <div class="article__date article__date_preview">Published in <a href="/notes/">Notes</a> on March 21, 2017
+          </div><p><em><strong>Warning!</strong> This is an essay written as a part of my English Listening &amp; Speaking course in Columbia West College. It may contain mistakes I had made with no reason to fool anyone but by accident. The main reason for this essay to exist is the need to excercise in writing convincing and well shaped pieces of text. Please, don&#39;t use it as a source for your studies or cite as a proof of anything. All of the written below is my personal biased opinion not suitable to rely on.</em></p>
+<p>Milton Friedman once said, “The poor stay poor not because they’re lazy, but because they have no access to capital”. Even though it seems to be obvious from a capitalistic standpoint, I claim that capital can only help after the system itself will have been transformed from within.</p>
 
-  <script src="/static/slave.js"></script>
-</body>
+          <p class="more"><a href="/notes/2017-03-why-capitalists-lie" class="more__link">I understand the feasible influence of your opinion and wish to keep on reading</a></p>
+        </article>
+        <article class="article">
+          <h1><a href="/places/2017-02-the-first-week-in-los-angeles">Первая неделя в Лос-Анджелесе</a></h1>
+          <div class="article__date article__date_preview">Published in <a href="/places/">Places</a> on February 26, 2017
+          </div><p>В начале прошлой недели я <em>переехал</em> в Лос-Анджелес, чтобы учить английский — на полгода, если следовать первоначальному плану. Цели перебраться сюда (в США) насовсем у меня не было и нет, но мысли такие, разумеется, проскакивают. В мечтах, взявшихся преимущественно из сериала Californication и отчасти из поп-культуры вроде клипов и маек из Pull &amp; Bear, Лос-Анджелес представлялся райским местом. Мегаполис с вечным летом, на берегу океана, в Южной Калифорнии. На деле всё оказалось, естественно, не совсем так.</p>
+<p>Лос-Анджелес (а точнее весь округ, LA County) очень большой, размазанный по побережью и предгорьям. Живут тут преимущественно в частных домиках, как и везде в Америке (это вам не Манхэттен!). Все ездят на машинах. Людей на тротуарах нет! Конечно, есть подходящие для пешеходов островки жизни, но их я пока нашёл всего несколько штук. Скамеек на улицах нет, сидит народ только в уличных кафе, но и тех на улице раз-два и обчёлся. Не Италия.</p>
+
+          <p class="more"><a href="/places/2017-02-the-first-week-in-los-angeles" class="more__link">Читать дальше про климат, людей, цены, язык — с картинками</a></p>
+        </article>
+        <article class="article">
+          <h1><a href="/notes/2017-02-explore-not-judge">Explore, not Judge</a></h1>
+          <div class="article__date article__date_preview">Published in <a href="/notes/">Notes</a> on February 16, 2017
+          </div><p>During almost all of my life, I used to judge everything I encountered. Among usual subjects to judge were people with their decisions and opinions, computer technologies, books and movies, ideas from anyone and anywhere, even the vaguest ones—that were better to explore rather than evaluate. Short story long, I’ve thought I knew everything and tried to live according to that principle. Anytime I was hit by anything new, I tried to do my best just to fit that event into the system I was already familiar with. My own judgment and decision-making matrix.</p>
+<p>Whether the event was positive or negative, brought me something useful or hurt, I was instantly up to put a particular label onto it. Just good or bad. Nothing worth craving. Too shallow or way profound for such a simple idea. Stupid. Jerk. Asshole. Or even the-future-mother-of-my-children-and-fuck-what-you-could-think-about-it. As you’ve probably noticed already, I was hardly to be called an easy-going positive thinking person. And despite the fact I hate self-help crap filled with affirmations, the way I used to perceive the world was neither useful nor pleasant.</p>
+
+          <p class="more"><a href="/notes/2017-02-explore-not-judge" class="more__link">Find out what I realized about perceving the outside world</a></p>
+        </article>
+        <article class="article">
+          <h1><a href="/notes/2017-01-abandoning-blogging">Abandoning Blogging</a></h1>
+          <div class="article__date article__date_preview">Published in <a href="/notes/">Notes</a> on January 30, 2017
+          </div><p>I’ve tried to maintain a blog a few times during the last 8-10 years. First, I had nothing to write about. Then I had a great idea to write about projects I’ve been working on as a freelance developer, but I haven’t had enough really good projects to be proud of. Neither I had enough passion to write about my job because it turned out to be another job itself and take too much time for a guy who earned money for coding, not writing. I also tried to <a href="http://rawgift.livejournal.com"  target="_blank">write about my personal experiences, particularly in Russian</a>, which was probably a good idea, but I abandoned it quickly.</p>
+<p>About a year ago, in the beginning of 2016, I took another attempt to write. That time, it was about my experience as a professional software developer at Yandex. Potentially, the job and tasks I was responsible for were, and still are, very interesting. Sometimes hard and sometimes not, with tough and loose deadlines, all of them were more about juggling with lots of different parts: figuring out what to do; decomposing projects into individual tasks; managing people to make them understand the meaning of the task, and finally making sure they&#39;d done the job as was intended. I was a manager, not just a developer who had lots of time to spend on coding. But I wanted to write about coding challenges actually not having them in real life! That attempt failed too.</p>
+
+          <p class="more"><a href="/notes/2017-01-abandoning-blogging" class="more__link">Proceed to my reasons to abandon blogging</a></p>
+        </article>
+        <article class="article">
+          <h1><a href="/notes/weekly-interesting-reads">Weekly interesting reads on science, self-development and maintaining a non-commercial open-source project</a></h1>
+          <div class="article__date article__date_preview">Published in <a href="/notes/">Notes</a> on August 27, 2016
+          </div><p>Today I share with you the list of non-development articles which I collected during the last few weeks. There&#39;s a very interesting narration by Remy Sharp about his experience in creating and maintaining JSBin, useful articles on time perception and human psycology, some intriguing physics discoveries and wonders of the nature and finally a link to the NYC pictures pinned to the map.</p>
+
+          <p class="more"><a href="/notes/weekly-interesting-reads" class="more__link">Proceed to reading</a></p>
+        </article>
+        <article class="article">
+          <h1><a href="/notes/developers-bookmarks-1">Developer&#39;s bookmarks #1: progressive web apps, automated testing pyramid, thoughts about good code and some CSS fun</a></h1>
+          <div class="article__date article__date_preview">Published in <a href="/notes/">Notes</a> on August 18, 2016
+          </div><p>This time I decided to separate all related to software development stuff from personal and other things that are interesting but are off the topic.</p>
+<p>Here is a huge list of articles which I, by means of some unknown magic (even for me!), could read in the course of the past week. The most interesting and fun story which I&#39;d like to start with is <a href="http://www.montulli.org/theoriginofthe%3Cblink%3Etag"  target="_blank">the history of the <code>blink</code> tag</a>. This is an amazing read of the kind I like most of all: an amusing story on something very related to me and my experience (of course, technologies and guys who invented them). Must read for everyone!</p>
+
+          <p class="more"><a href="/notes/developers-bookmarks-1" class="more__link">Proceed to a huge list of notes on web apps, automated testing, CSS, variable declaration types in JavaScript and so on</a></p>
+        </article>
+        <article class="article">
+          <h1><a href="/notes/bookmarks-2-email-birds-etc">Bookmarks #2</a></h1>
+          <div class="article__date article__date_preview">Published in <a href="/notes/">Notes</a> on August 7, 2016
+          </div><p>This week&#39;s bookmarks list can be way more interesting for programmers than the previous one because there&#39;s one very interesting historical narration and some links about front-end development. There&#39;re also some links for those who like science and is interested in world&#39;s experience of avoiding traffic jams.</p>
+
+          <p class="more"><a href="/notes/bookmarks-2-email-birds-etc" class="more__link">Read more about e-mail history, birds and something else</a></p>
+        </article>
+        <article class="article">
+          <h1><a href="/notes/weekly-bookmarks-1">Weekly bookmarks #1</a></h1>
+          <div class="article__date article__date_preview">Published in <a href="/notes/">Notes</a> on August 2, 2016
+          </div><p>Recently I rewrote my blog publishing system from scratch, named it Oxypogon and returned to the idea of blogging regularly. But what about should I write if no great article is finished yet but there&#39;s blog, and it is waiting? Certainly about things that are worth reading, seeing and knowing about.</p>
+
+          <p class="more"><a href="/notes/weekly-bookmarks-1" class="more__link">My first selection consists of a few articles and a few movies. Here it is.</a></p>
+        </article>
+        <article class="article">
+          <h1><a href="/notes/the-splice-error-pattern">The splice error pattern</a></h1>
+          <div class="article__date article__date_preview">Published in <a href="/notes/">Notes</a> on February 9, 2016
+          </div><p>Imagine you’re writing an algorithm which performs looping over an array with any type of pointer (<code>for</code> or <code>while</code> loop, <code>forEach</code>, <code>map</code> etc). Each iteration the pointer moves in any direction, but you never force it to come back in the most of cases. Why should you? This mode of manipulating data is so much usual that your probably have never ever thought of its liability to hard-to-find annoying errors which will lead you toward wearing debugging!</p>
+<p>The erroneous pattern is very simple and obvious. Say you need to map some action to all array elements and write.</p>
+
+          <p class="more"><a href="/notes/the-splice-error-pattern" class="more__link">Already understood what happens?</a></p>
+        </article>
+      </div>
+      <div class="site__footer">
+        <div class="footer"><p>All content is written by Oleg Gromov in 2009—2017.</p>
+<p>Published by <a href="//github.com/oleggromov/oxypogon"  target="_blank">Oxypogon.js, the static site generator</a>.</p>
+</div>
+      </div>
+    </div>
+    <script>(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter6486163 = new Ya.Metrika({ id:6486163, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js"></script>
+    <script>
+      if (hljs) {
+      	hljs.initHighlightingOnLoad()
+      }
+    </script>
+  </body>
 </html>
