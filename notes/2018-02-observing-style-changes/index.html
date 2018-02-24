@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Observing Style Changes 👁 — oleggromov.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="/static/styles.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:300,300i,700,700i&amp;amp;subset=cyrillic,cyrillic-ext,latin-ext"/>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/default.min.css"/>
+  </head>
+  <body>
+    <div class="site">
+      <aside class="site__about">
+        <div class="sidebar">
+          <div class="sidebar__about">
+            <div class="about">
+              <div class="about__photo"><img src="/static/photo.jpg" alt="Oleg Gromov" class="about__img"></div>
+              <div class="about__text"><p>My name is <strong>Oleg Gromov</strong>. I&#39;m a software developer who likes exploring the world and discovering his own passions. You&#39;re welcome to read my notes here and comment on them!</p>
+</div>
+            </div>
+          </div>
+          <nav class="sidebar__links">
+            <nav class="links">
+              <div class="links__group"><span class="links__item"><a href="/notes/">Notes</a></span><span class="links__item"><a href="/places/">Places</a></span>
+              </div>
+              <div class="links__group links__group_external">
+                <div class="links__reach"><p>Feel free to reach me on:</p>
+</div><a href="https://github.com/oleggromov" target="_blank" class="links__item">github</a><a href="https://facebook.com/oleg.v.gromov" target="_blank" class="links__item">facebook</a><a href="https://stackoverflow.com/users/1557048/oleggromov" target="_blank" class="links__item">stackoverflow</a><a href="https://twitter.com/oleggromov" target="_blank" class="links__item">twitter</a><a href="https://medium.com/@oleggromov" target="_blank" class="links__item">medium</a>
+              </div>
+            </nav>
+          </nav>
+        </div>
+      </aside>
+      <div class="site__content">
+        <div class="article">
+          <h1>Observing Style Changes 👁</h1>
+          <div class="article__date">Published in <a href="/notes/">Notes</a> on February 24, 2018
+          </div>
+<p>While working on one of my inspirational OSS projects, I found out that there&#39;s currently no way to observe element style changes. At least I couldn&#39;t find any mentions of library-like solutions for that. I assume that the reason for that might be the fact it&#39;s hard to understand whether or not the styles have changed.</p>
+<p>So, I decided to write my own library and called it <code>SauronStyle</code>. Please take a look and <a href="https://github.com/oleggromov/sauron-style"  target="_blank">give it a try</a> if you need anything like that for your project.</p>
+<h2 id="how-to-observe">How to Observe</h2>
+<p>Leaving the <em>why?</em> behind the scene, let&#39;s jump right to <em>how</em>. There&#39;re a few ways to update element styling I could remember:</p>
+<ul>
+<li>update its <code>class</code> or <code>style</code> directly</li>
+<li>update its parents&#39; attributes, respectively</li>
+<li>insert or remove <code>style</code> or <code>link</code> elements anywhere in the document</li>
+</ul>
+<p>In order to watch any of those, we need <code>MutationObserver</code> support - a DOM change observing interface supported in modern browsers (IE11+). I suppose that&#39;s the same that allows you to watch subtree or attribute modification in Elements pane of your favorite DevTools.</p>
+<p>So what does it provide us with? Simply the ability to listen to attribute changes (<code>class</code> and <code>style</code> fall in this category) as well as subtree modifications (external stylesheet insertion on removal lives here).</p>
+<h2 id="how-to-check-for-a-difference">How to Check for a Difference</h2>
+<p>When we know <em>something has changed</em>, we should check if there are any <em>actual</em> changes since the changes we noticed might be totally unrelated. To do so, we will use <code>getComputedStyle</code> - a useful method on <code>window</code> supported by any modern browser starting IE9. What it does, is it returns a flat object of all CSS properties with values in a similar to CSS <em>computed</em> tab in Chrome.</p>
+<p>Importantly, it returns a <em>live</em> <a href="https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration"  target="_blank"><code>CSSStyleDeclaration</code> instance</a>, which changes over time forcing us to keep a copy of it.</p>
+<h2 id="implementation-sneak-peek">Implementation sneak-peek</h2>
+<p>The actual <a href="https://github.com/oleggromov/sauron-style"  target="_blank">source code</a> lives in the repository, being rather compact by the way, but it might be interesting for you to see some details.</p>
+<p>First of all, I want to observe the watched element attributes changes. This is achieved easily:</p>
+<pre><code class="lang-javascript">this.mutationObserver = new window.MutationObserver(this.checkDiff)
+this.mutationObserver.observe(this.node, {
+  attributes: true,
+  attributeFilter: [&#39;style&#39;, &#39;class&#39;]
+})
+</code></pre>
+<p>What this code does, is it creates a new instance of <code>MutationObserver</code> class and sends it a callback, <code>this.checkDiff</code>, as the only argument. Then it says: watch <code>this.node</code> for the changes in <code>style</code> and <code>class</code> attributes only and invoke the callback on these changes.</p>
+<p>Later, in <code>this.checkDiff</code> we want to see if the actual styles have changed:</p>
+<pre><code class="lang-javascript">checkDiff () {
+  const newStyle = this.getStyle()
+  const diff = getDiff(this.style, newStyle)
+
+  if (Object.keys(diff).length) {
+    if (this.subscriber) {
+      this.subscriber(diff)
+    }
+    this.style = newStyle
+  }
+}
+</code></pre>
+<p>The code above gets the current style and compares it against the stored copy. Then, if there&#39;s any difference, we store the new one for the future and invoke a subscriber function if it has been set already.</p>
+<p><code>this.getStyle</code> returns a shallow copy of <code>this.computedStyle</code>.</p>
+<pre><code class="lang-javascript">getStyle () {
+  return getCopy(this.computedStyle)
+}
+</code></pre>
+<p>Where <code>this.computedStyle</code> which is a reference to the mentioned above <code>CSSStyleDeclaration</code> instance:</p>
+<pre><code class="lang-javascript">this.computedStyle = window.getComputedStyle(this.node)
+</code></pre>
+<h3 id="observing-other-elements">Observing Other Elements</h3>
+<p>It would be more or less it if we didn&#39;t care about other elements like parents&#39; attribute changes or <code>style</code>/<code>link[rel=stylesheet]</code> insertion on removal. To do so, we need another entity, which I called <code>DocumentObserver</code>, to watch document subtree modifications including attribute changes. It looks like this in the class <code>constructor</code>:</p>
+<pre><code class="lang-javascript">this.observer = new window.MutationObserver(mutations =&gt; mutations.forEach(this.observe.bind(this)))
+this.observer.observe(window.document, {
+  attributes: true,
+  attributeFilter: [&#39;class&#39;],
+  childList: true,
+  subtree: true
+})
+</code></pre>
+<p>It&#39;s quite similar to the other <code>MutationObserver</code> use case but here we treat every <code>mutation</code> separately and watch changes on <code>window.document</code>. Here we say roughly this: observe <code>class</code> attribute modifications and children insertion/removal for <code>window.document</code> and its children. Then call <code>this.observe</code> for any relevant mutation.</p>
+<p>Observation code is very simple:</p>
+<pre><code class="lang-javascript">observe (mutation) {
+  if (mutation.type === &#39;childList&#39;) {
+    this.checkElements(mutation)
+  } else if (mutation.type === &#39;attributes&#39;) {
+    this.invokeAll()
+  }
+}
+</code></pre>
+<p>Essentially, it checks the type of the mutation and proceeds to a corresponding branch. It&#39;s either call to <code>this.invokeAll</code>, which just invokes all subscribers, or a few additional checks aimed to call <code>this.invokeAll</code> only when a <code>link</code> or a <code>style</code> element is inserted.</p>
+<p>This part, the <code>DocumentObserver</code>, is used from within <code>SauronStyle</code> like that:</p>
+<pre><code class="lang-javascript">this.documentObserver = getDocumentObserver()
+this.listenerId = this.documentObserver.addListener(this.checkDiff)
+</code></pre>
+<p>First, we use it as a singleton because we only have one document. Second, we subscribe the same <code>this.checkDiff</code> to relevant changes to the document.</p>
+<h2 id="issues">Issues</h2>
+<p>Well, this seems to work decently well but are there any problems?</p>
+<p>First of all, the performance is low. We often call <code>getComputedStyle</code> and a call takes a few milliseconds, from 1 to 5-6 on my MacBook &#39;2013. It&#39;s slow. Imagine a few thousand elements on a page which you want to observe. Will it take a few seconds to react to a DOM change? Yes, it will.</p>
+<p>Second, the algorithm is more of proof-of-concept quality rather than production-ready. We call <code>checkDiff</code> method extensively, for any change in DOM that sometimes won&#39;t be related at all to the element we observe. I guess this additional computational complexity can be eliminated by computing and storing element styles outside DOM. But this could lead to more mistakes in difference detection and <em>much bigger</em> comprehension complexity.</p>
+<p>I&#39;m also not quite sure that I haven&#39;t forgotten any other ways to affect element styles.</p>
+<h2 id="how-to-help">How to Help</h2>
+<ul>
+<li>tell me if you have ever needed anything like that</li>
+<li>think and share your thoughts about any other possible ways of detecting style changes</li>
+<li>give <a href="https://github.com/oleggromov/sauron-style"  target="_blank">the library</a> a star on GitHub</li>
+<li>actually use it in one of your projects! 👻</li>
+</ul>
+<p>Thanks for your attention!</p>
+<p>P.S. This article is also (and originally) published for Dev.to community. Possibly, the discussion, if it starts, will happen there.</p>
+
+          <div class="article__date"> Written on February 24, 2018</div>
+          <div class="article__comments">
+            <div id="disqus_thread"></div>
+            <script>(function() {var d = document, s = d.createElement('script');s.src = '//oleggromov.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script>
+          </div>
+        </div>
+      </div>
+      <div class="site__footer">
+        <div class="footer"><p>All content is written by Oleg Gromov in 2009—2017.</p>
+<p>Published by <a href="//github.com/oleggromov/oxypogon"  target="_blank">Oxypogon.js, the static site generator</a>.</p>
+</div>
+      </div>
+    </div>
+    <script>(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter6486163 = new Ya.Metrika({ id:6486163, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js"></script>
+    <script>
+      if (hljs) {
+      	hljs.initHighlightingOnLoad()
+      }
+    </script>
+  </body>
+</html>
